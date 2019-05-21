@@ -9,9 +9,6 @@
    <logger name="kr.or.ddit" level="debug">
        <appender-ref ref="STDOUT" />
    </logger> 
-  
-<!--    <logger name="kr.or.ddit.servlet" level="debug"> -->
-<!--        <appender-ref ref="STDOUT" /> -->
-<!--    </logger>  -->
+
 
 </configuration>
