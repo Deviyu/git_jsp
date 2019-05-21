@@ -24,5 +24,6 @@
 	request.getRequestURI() : <%= request.getRequestURI() %><br>
 	request.getProtocol() : <%= request.getProtocol() %><br>
 	<img src = "<%=request.getContextPath()%>/image/sally.png"/>
+	
 </body>
 </html>
