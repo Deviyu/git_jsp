@@ -8,21 +8,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class TimesServlet extends HttpServlet{
+	private Logger logger = LoggerFactory.getLogger(TimesServlet.class);
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		String param = req.getParameter("j");
 		String param2 = req.getParameter("i");
 		
-		System.out.println("param : " + param);
-		System.out.println("param2 : " + param2);
+		//trace / debug / info / warn / error
+		logger.debug("param : {}", param);
+		logger.debug("param2 : {}", param2);
 		
 		int param_int = Integer.parseInt(param);
 		int param2_int = Integer.parseInt(param2);
 		
-		System.out.println("param_int : " + param_int);
-		System.out.println("param2_int : " + param2_int);
+		
+		logger.debug("param_int : {}", param_int);
+		logger.debug("param2_int : {}", param2_int);
 		
 		PrintWriter writer = resp.getWriter();
 		
