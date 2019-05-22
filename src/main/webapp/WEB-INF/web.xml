@@ -9,32 +9,38 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
   <servlet>
-  	<servlet-class>kr.or.ddit.servlet.BasicServlet</servlet-class>
-  	<servlet-name>basicServlet</servlet-name>
+    <servlet-name>basicServlet</servlet-name>
+    <servlet-class>kr.or.ddit.servlet.BasicServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>basicServlet</servlet-name>
-  	<url-pattern>/bs</url-pattern>
+    <servlet-name>basicServlet</servlet-name>
+    <url-pattern>/bs</url-pattern>
   </servlet-mapping>
-  
   <servlet>
-  	<servlet-class>kr.or.ddit.servlet.NowDate</servlet-class>
-  	<servlet-name>nowDate</servlet-name>
+    <servlet-name>nowDate</servlet-name>
+    <servlet-class>kr.or.ddit.servlet.NowDate</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>nowDate</servlet-name>
-  	<url-pattern>/nowDate</url-pattern>
+    <servlet-name>nowDate</servlet-name>
+    <url-pattern>/nowDate</url-pattern>
   </servlet-mapping>
-  
   <servlet>
-	<servlet-class>kr.or.ddit.servlet.TimesServlet</servlet-class>
-	<servlet-name>TimesTablesServlet</servlet-name>
+    <servlet-name>TimesTablesServlet</servlet-name>
+    <servlet-class>kr.or.ddit.servlet.TimesServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-	<servlet-name>TimesTablesServlet</servlet-name>
-	<url-pattern>/TimesTablesServlet</url-pattern>  
+    <servlet-name>TimesTablesServlet</servlet-name>
+    <url-pattern>/TimesTablesServlet</url-pattern>
   </servlet-mapping>
-  
+  <servlet>
+    <description></description>
+    <display-name>LoginController</display-name>
+    <servlet-name>LoginController</servlet-name>
+    <servlet-class>kr.or.ddit.login.controller.LoginController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginController</servlet-name>
+    <url-pattern>/LoginController</url-pattern>
+  </servlet-mapping>
 </web-app>

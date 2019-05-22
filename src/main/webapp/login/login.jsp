@@ -25,7 +25,7 @@
 
     <div class="container">
 
-      <form class="form-signin" action="<%=request.getContextPath()%>/login/loginProcess.jsp" method="post">
+      <form class="form-signin" action="<%=request.getContextPath()%>/login" method="post">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="userId" class="sr-only">User ID</label>
         <input type="text" id="userId" name = "userId" class="form-control" placeholder="User ID" required autofocus>
