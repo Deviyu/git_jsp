@@ -26,10 +26,6 @@
 		}	
 	%>
 	request.getParameter("password") : <%=request.getParameter("password") %><br>
-	user id[0] : <%= idArr[0] %> <br>
-	user id[1] : <%= idArr[1] %> <br>
-	password : <%= password %><br>
-	
 	<h2>request객체의 getParameterMap</h2>
 	<% 
 		Map<String, String[]> parameterMap = request.getParameterMap(); 
