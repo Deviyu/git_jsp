@@ -23,7 +23,12 @@
 	request.getMethod() : <%= request.getMethod() %> <br>
 	request.getRequestURI() : <%= request.getRequestURI() %><br>
 	request.getProtocol() : <%= request.getProtocol() %><br>
+	
 	<img src = "<%=request.getContextPath()%>/image/sally.png"/>
+	
+	<%-- 파라미터 받기 --%>
+	<br>
+	request.getParameter("rangersName") : <%= request.getParameter("rangersName") %> <br>
 	
 </body>
 </html>

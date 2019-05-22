@@ -10,13 +10,19 @@
 </style>
 </head>
 <body>
+	<% 
+		String param_i = request.getParameter("i"); 
+		String param_j = request.getParameter("j");
+		int int_i = Integer.parseInt(param_i);
+		int int_j = Integer.parseInt(param_j);
+	%>
 	<table>
 		<% 
-			for(int i = 1; i <= 9; i++) {
+			for(int i = 1; i <= int_i; i++) {
 		%>
 			<tr>
 		<% 
-				for(int j = 2; j <= 9; j++) {
+				for(int j = 2; j <= int_j; j++) {
 		%>
 				<td><%=j%> * <%=i%> = <%=i*j%></td>
 		<%	
