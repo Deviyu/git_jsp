@@ -7,6 +7,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import kr.or.ddit.user.model.UserVO;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,9 +48,16 @@ public class LoginController extends HttpServlet {
 		//Login  화면을 처리해줄 누군가에게 위임.
 		//단순 Login화면을 html로 응답을 생성해주는 작업이 필요.
 		// /login/login.jsp으로 위임 -> 서버상에서 별도의 상태변경을 만드는 요청이 아니기때문에 Dispatch 방식으로 위임.
-
+		if(request.getSession().getAttribute("USER_INFO")!=null) {
+			//session에 사용자 정보가 있을 경우 --> main화면으로 이동
+			logger.debug("사용자 정보 있음");
+			request.getRequestDispatcher("/main.jsp").forward(request, response);
+		} else {
+			//session에 사용자 정보가 없을 경우 --> 기존 로직대로 로그인 화면으로 이동
 //		response.sendRedirect(request.getContextPath() + "/login/login.jsp"); (만약 리다이렉트를 한다면)
-		request.getRequestDispatcher("/login/login.jsp").forward(request, response);
+			logger.debug("사용자 정보 없음");
+			request.getRequestDispatcher("/login/login.jsp").forward(request, response);
+		}
 	}
 	
 	// 로그인 요청 처리
@@ -66,7 +76,11 @@ public class LoginController extends HttpServlet {
 		// -> userId : brown, password : brown1234일때 일치판정
 		if(userId.equals("brown") && password.equals("brown1234")) {
 			//만약, 일치하면.. (로그인 성공)
-			//메인화면으로 이동
+			//Session에 사용자 정보를 넣어준다. (사용 빈도가 높음)
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("USER_INFO", new UserVO("브라운", "brown", "곰"));
+			//메인화면으로 이동 (Dispatch)
 			request.getRequestDispatcher("/main.jsp").forward(request, response);
 		} else {
 			//만약, 불일치하면.. (아이디 혹은 비밀번호가 잘못 입력되었음)

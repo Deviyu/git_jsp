@@ -9,13 +9,10 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
-  <!-- 초기화 파라미터 -->
   <context-param>
-  	<param-name>ADMIN</param-name>
-  	<param-value>brown</param-value>
+    <param-name>ADMIN</param-name>
+    <param-value>brown</param-value>
   </context-param>
-  
   <servlet>
     <servlet-name>basicServlet</servlet-name>
     <servlet-class>kr.or.ddit.servlet.BasicServlet</servlet-class>
@@ -49,5 +46,45 @@
   <servlet-mapping>
     <servlet-name>LoginController</servlet-name>
     <url-pattern>/LoginController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SumCalculation</display-name>
+    <servlet-name>SumCalculation</servlet-name>
+    <servlet-class>kr.or.ddit.servlet.SumCalculation</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SumCalculation</servlet-name>
+    <url-pattern>/SumCalculation</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MulCalculation</display-name>
+    <servlet-name>MulCalculation</servlet-name>
+    <servlet-class>kr.or.ddit.servlet.MulCalculation</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MulCalculation</servlet-name>
+    <url-pattern>/MulCalculation</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserList</display-name>
+    <servlet-name>UserList</servlet-name>
+    <servlet-class>kr.or.ddit.user.controller.UserList</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserList</servlet-name>
+    <url-pattern>/UserList</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LogoutController</display-name>
+    <servlet-name>LogoutController</servlet-name>
+    <servlet-class>kr.or.ddit.login.controller.LogoutController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogoutController</servlet-name>
+    <url-pattern>/logout</url-pattern>
   </servlet-mapping>
 </web-app>
