@@ -4,6 +4,7 @@ public class UserVO {
 	private String name; // 이름
 	private String userId; // ID
 	private String alias; // 별명
+	private String pass;
 	
 	public UserVO(String name, String userId, String alias) {
 		super();
@@ -12,10 +13,19 @@ public class UserVO {
 		this.alias = alias;
 	}
 	
+
 	public UserVO() {}
 
 	public String getName() {
 		return name;
+	}
+	
+	public String getPass() {
+		return pass;
+	}
+	
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
 	public void setName(String name) {
 		this.name = name;
@@ -32,12 +42,15 @@ public class UserVO {
 	public void setAlias(String alias) {
 		this.alias = alias;
 	}
-	
+
+
 	@Override
 	public String toString() {
 		return "UserVO [name=" + name + ", userId=" + userId + ", alias="
-				+ alias + "]";
+				+ alias + ", pass=" + pass + "]";
 	}
+	
+
 	
 	
 }
