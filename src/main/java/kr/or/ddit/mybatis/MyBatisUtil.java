@@ -18,6 +18,7 @@ public class MyBatisUtil {
 			sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 		} catch (IOException e) {
 			e.printStackTrace();
+			
 		}
 	}
 	
