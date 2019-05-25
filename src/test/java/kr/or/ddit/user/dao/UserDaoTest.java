@@ -85,6 +85,7 @@ public class UserDaoTest {
 		/***Then***/
 		assertEquals("cony1234", userVO.getPass());
 		assertEquals("코니", userVO.getName());
+		assertEquals("코니", userVO.getName());
 		logger.debug("userVO : {}", userVO);
 	}
 	
