@@ -4,5 +4,7 @@
 	<ul class="nav nav-sidebar">
 		<li class="active"><a href="#">Main (included)<span class="sr-only">(current)</span></a></li>
 		<li class="active"><a href="<%=request.getContextPath()%>/userList">User List</a></li>
+		<li class="active"><a href="<%=request.getContextPath()%>/userPagingList">User Paging List</a></li>
+		<li class="active"><a href="<%=request.getContextPath()%>/lprodPagingList">LPROD Paging List</a></li>
 	</ul>
 </div>

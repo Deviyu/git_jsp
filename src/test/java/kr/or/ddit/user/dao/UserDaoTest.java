@@ -4,12 +4,14 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
+import kr.or.ddit.paging.model.PageVO;
 import kr.or.ddit.user.model.UserVO;
 
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,26 +32,24 @@ public class UserDaoTest {
 	
 	//@AfterClass가 적용된 메서드가 1회 실행
 	
-	
 	@BeforeClass
 	public static void beforeClass() {
-		logger.debug("beforeClass()");
+	
 	}
 	
 	@Before
 	public void setup() {
-		logger.debug("setup()");
 		userDao = new UserDao();
 	}
 	
 	@After
 	public void teardown() {
-		logger.debug("teardown()");
+		
 	}
 	
 	@AfterClass
 	public static void afterClass() {
-		logger.debug("afterClass()");
+	
 	}
 	
 	/**
@@ -89,11 +89,44 @@ public class UserDaoTest {
 		logger.debug("userVO : {}", userVO);
 	}
 	
-	//사용자 페이징 리스트 조회
-	// 고려사항
-	//	- 몇 번째 페이지 조회인지?
-	//	- 페이징 몇 건씩 데이터를 보여줄건지? : Query 실행 Parameter에 연관
-	//	- 정렬 순서는? -> Parameter화 시킬 수 있다.
-	//		--> 일단은 사용자 아이디 순으로 정렬한다.
+	/**
+	 * Method : userPagingListTest
+	 * 작성자 : jakeh
+	 * 변경이력 : 2019-05-27 처음 생성
+	 * Method 설명 : 사용자 페이징 리스트 조회 테스트
+	 */
+	@Test
+	public void userPagingListTest() {
+		//사용자 페이징 리스트 조회
+		// 고려사항
+		//	- 몇 번째 페이지 조회인지?
+		//	- 페이징 몇 건씩 데이터를 보여줄건지? : Query 실행 Parameter에 연관
+		//	- 정렬 순서는? -> Parameter화 시킬 수 있다.
+		//		--> 일단은 사용자 아이디 순으로 정렬한다.
+		
+		/***Given***/
+		PageVO pageVO = new PageVO(2, 20);
+		/***When***/
+		List<UserVO> pagingList = userDao.userPagingList(pageVO);
+		/***Then***/
+		assertEquals(20, pagingList.size());
+		logger.debug("pagingList : {}", pagingList);
+		logger.debug("pageVO : {}", pageVO);
+	}
 	
+	/**
+	 * Method : usersCntTest
+	 * 작성자 : jakeh
+	 * 변경이력 : 2019-05-27 처음 생성
+	 * Method 설명 : 전체 사용자 수 출력 메서드 테스트
+	 */
+	@Test
+	public void usersCntTest() {
+		/***Given***/
+		/***When***/
+		int usersCnt = userDao.usersCnt();
+		/***Then***/
+		assertEquals(105, usersCnt);
+		logger.debug("usersCnt : {}", usersCnt);
+	} 
 }
