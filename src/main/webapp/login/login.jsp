@@ -53,18 +53,18 @@
 // 			})
 			
 			$("#frm").on("submit", function() {
-				if($("#rememberMe").prop("checked")) {
-					// 만약 Remember Me CheckBOX가 체크되어 있는경우
-					// 사용자 ID를 userId 쿠키값으로 저장
-					// true값을 rememberMe 쿠키값으로 저장
-						Cookies.set("userId", $("#userId").val(), {expires : 30});
-						Cookies.set("rememberMe", "true", {expires : 30});
-					} else {
-					// 만약 Remember Me CheckBox가 체크되어 있는경우
-					// userId, rememberMe 쿠키값을 삭제
-						Cookies.remove("userId");
-						Cookies.remove("rememberMe");
-					}
+// 				if($("#rememberMe").prop("checked")) {
+// 					// 만약 Remember Me CheckBOX가 체크되어 있는경우
+// 					// 사용자 ID를 userId 쿠키값으로 저장
+// 					// true값을 rememberMe 쿠키값으로 저장
+// 						Cookies.set("userId", $("#userId").val(), {expires : 30});
+// 						Cookies.set("rememberMe", "true", {expires : 30});
+// 					} else {
+// 					// 만약 Remember Me CheckBox가 체크되어 있는경우
+// 					// userId, rememberMe 쿠키값을 삭제
+// 						Cookies.remove("userId");
+// 						Cookies.remove("rememberMe");
+// 					}
 			})
 			
 			$("#password").keypress(function(key) {
@@ -88,7 +88,7 @@
         <input type="password" id="password" class="form-control" name="password" placeholder="Password" required>
         <div class="checkbox">
           <label>
-            <input type="checkbox" id = "rememberMe" value="true"> Remember me
+            <input type="checkbox" id = "rememberMe" name = "rememberMe" value="true"> Remember me
           </label>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit" id = "signInBtn">Sign in</button>

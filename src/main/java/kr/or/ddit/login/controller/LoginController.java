@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,7 +27,7 @@ import org.slf4j.LoggerFactory;
 *
 * <pre>
 * << 개정이력(Modification Information) >>
-*
+*	
 * 수정자 수정내용
 * ------ ------------------------
 * PC07 최초 생성
@@ -44,6 +45,10 @@ public class LoginController extends HttpServlet {
 	// 사용자 로그인 화면 요청 처리
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.debug("LoginController doGet()");
+		
+		for(Cookie cookie : request.getCookies()) {
+			logger.debug("Cookie : {} = {}", cookie.getName(), cookie.getValue());
+		}
 		
 		//Login  화면을 처리해줄 누군가에게 위임.
 		//단순 Login화면을 html로 응답을 생성해주는 작업이 필요.
@@ -64,11 +69,11 @@ public class LoginController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.debug("parameter userId (Ctrl) : {}", request.getParameter("userId"));
 		logger.debug("parameter password (Ctrl) : {}", request.getParameter("password"));
-		
-		//사용자 Parameter : userId, password
+		logger.debug("parameter rememberMe(Ctrl) : {}", request.getParameter("rememberMe"));
+		//사용자 Parameter : userId, password, rememberMe
 		String userId = request.getParameter("userId");
 		String password = request.getParameter("password");
-		
+		String rememberMe = request.getParameter("rememberMe");
 		//db에서 해당사용자의 정보조회 (service, dao 필요)
 		// omit.
 		
@@ -76,8 +81,18 @@ public class LoginController extends HttpServlet {
 		// -> userId : brown, password : brown1234일때 일치판정
 		if(userId.equals("brown") && password.equals("brown1234")) {
 			//만약, 일치하면.. (로그인 성공)
-			//Session에 사용자 정보를 넣어준다. (사용 빈도가 높음)
+			int cookieMaxAge = 0;
+			if(rememberMe!=null) 
+				cookieMaxAge = 30*24*60*60;
+				//rememberMe Parameter가 존재할 경우,  userId, rememberMe 값을 쿠키로 설정해준다.
+				Cookie userIdCookie = new Cookie("userId", userId);
+				userIdCookie.setMaxAge(cookieMaxAge);
+				Cookie rememberMeCookie = new Cookie("rememberMe", "true");
+				rememberMeCookie.setMaxAge(cookieMaxAge);
+				response.addCookie(userIdCookie);
+				response.addCookie(rememberMeCookie);
 			
+			//Session에 사용자 정보를 넣어준다. (사용 빈도가 높음)
 			HttpSession session = request.getSession();
 			session.setAttribute("USER_INFO", new UserVO("브라운", "brown", "곰"));
 			//메인화면으로 이동 (Dispatch)
