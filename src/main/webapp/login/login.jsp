@@ -11,6 +11,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="<%=request.getContextPath() %>/js/js.cookie.js"></script>
     <title>Sign in</title>
 
     <!-- Bootstrap core CSS -->
@@ -25,10 +26,10 @@
 			//1. rememberMe 쿠키가 있는지?
 			//	1.1. 있다면, 그 값이 true인지?
 			//	1.2. true라면, input id = "rememberMe" CheckBox를 체크.
-			var rememberMe = getCookie("rememberMe");
+			var rememberMe = Cookies.get("rememberMe");
 			if(rememberMe=="true"){
 				$("#rememberMe").prop("checked", true);
-				$("#userId").val(getCookie("userId"));
+				$("#userId").val(Cookies.get("userId"));
 				$("#password").focus();
 			} else {
 				$("#rememberMe").prop("checked", false);
@@ -36,7 +37,6 @@
 			}
 			
 // 			$("#signInBtn").on("click", function() {
-				
 // 				if($("#rememberMe").prop("checked")) {
 // 				// 만약 Remember Me CheckBOX가 체크되어 있는경우
 // 				// 사용자 ID를 userId 쿠키값으로 저장
@@ -49,7 +49,6 @@
 // 					deleteCookie("userId");
 // 					deleteCookie("rememberMe");
 // 				}
-				
 // 				$("#frm").submit();
 // 			})
 			
@@ -58,13 +57,13 @@
 					// 만약 Remember Me CheckBOX가 체크되어 있는경우
 					// 사용자 ID를 userId 쿠키값으로 저장
 					// true값을 rememberMe 쿠키값으로 저장
-						setCookie("userId", $("#userId").val(), 30);
-						setCookie("rememberMe", "true", 30);
+						Cookies.set("userId", $("#userId").val(), {expires : 30});
+						Cookies.set("rememberMe", "true", {expires : 30});
 					} else {
 					// 만약 Remember Me CheckBox가 체크되어 있는경우
 					// userId, rememberMe 쿠키값을 삭제
-						deleteCookie("userId");
-						deleteCookie("rememberMe");
+						Cookies.remove("userId");
+						Cookies.remove("rememberMe");
 					}
 			})
 			
@@ -74,42 +73,7 @@
 				}
 			})
 		})
-		// 쿠키값 저장
-		// expires : 현재 날짜로부터 며칠동안 유효한지? (정수값)
-		function setCookie(cookieName, cookieValue, expires) {
-			var dt = new Date();
-			dt.setDate(dt.getDate() + parseInt(expires) );
-			document.cookie = cookieName + "=" + cookieValue + "; path=/; expires=" + dt.toGMTString() + ";";
-			
-		}
-		
-		// 쿠키값 삭제
-		function deleteCookie(cookieName) {
-			setCookie(cookieName, "", -9);
-		}
-		
-		// 쿠키 이름에 해당하는 쿠키 값을 조회
-		function getCookie(cookieName) {
-			var cookieValue = "";
-			var cookieString = document.cookie;
-			if(cookieString) {
-				var cookies = document.cookie.split("; ");
-				for(var i = 0; i<cookies.length; i++) {
-					var cookie_i = cookies[i];
-					if(cookie_i.startsWith(cookieName)) {
-					var cookiesplit = cookie_i.split("=");
-						cookieValue = cookiesplit[1]; 
-						break;
-					}
-				}
-			}
-			return cookieValue;
-		}
-		
 	</script>
-	<script>
-		console.log(getCookie("userId"));
-	</script>	
   </head>
 
   <body>
