@@ -85,13 +85,15 @@ public class LoginController extends HttpServlet {
 			if(rememberMe!=null) 
 				cookieMaxAge = 30*24*60*60;
 				//rememberMe Parameter가 존재할 경우,  userId, rememberMe 값을 쿠키로 설정해준다.
+				//존재하지 않을땐, 시간을 0으로 설정해 삭제해준다.
+			
 				Cookie userIdCookie = new Cookie("userId", userId);
 				userIdCookie.setMaxAge(cookieMaxAge);
 				Cookie rememberMeCookie = new Cookie("rememberMe", "true");
 				rememberMeCookie.setMaxAge(cookieMaxAge);
 				response.addCookie(userIdCookie);
 				response.addCookie(rememberMeCookie);
-			
+				
 			//Session에 사용자 정보를 넣어준다. (사용 빈도가 높음)
 			HttpSession session = request.getSession();
 			session.setAttribute("USER_INFO", new UserVO("브라운", "brown", "곰"));
