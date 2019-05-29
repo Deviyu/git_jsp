@@ -46,10 +46,10 @@ public class LoginController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.debug("LoginController doGet()");
 		
-		Cookie[] cookies = request.getCookies();
-		for(Cookie cookie : cookies) {
-			logger.debug("cookie : {} = {}",cookie.getName(), cookie.getValue());
-		}
+//		Cookie[] cookies = request.getCookies();
+//		for(Cookie cookie : cookies) {
+//			logger.debug("cookie : {} = {}",cookie.getName(), cookie.getValue());
+//		}
 		
 		//Login  화면을 처리해줄 누군가에게 위임.
 		//단순 Login화면을 html로 응답을 생성해주는 작업이 필요.
@@ -104,7 +104,7 @@ public class LoginController extends HttpServlet {
 			//만약, 불일치하면.. (아이디 혹은 비밀번호가 잘못 입력되었음)
 			//로그인 화면으로 이동 : localhost/jsp/login
 			//현 상황에서는 /jsp/login url로 dispatch 할 수 없음 (Method 방식이 Post 상태이기 때문)
-			response.sendRedirect(request.getContextPath() + "/login");
+			request.getRequestDispatcher("/login/login.jsp").forward(request, response);
 		}
 		
 		

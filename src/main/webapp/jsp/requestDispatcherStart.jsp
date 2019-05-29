@@ -7,7 +7,7 @@
 <title>requestDispatchStart.jsp</title>
 </head>
 <body>
-	<form action = "<%=request.getContextPath() %>/jsp/requestDispatcherProcess.jsp">
+	<form action = "${pageContext.request.contextPath}/jsp/requestDispatcherProcess.jsp">
 		<input type = "text" name = "userId" value = "sally"/><br>
 		<input type = "submit" value = "Request Dispatch">
 	</form>

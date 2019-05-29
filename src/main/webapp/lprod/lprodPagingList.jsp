@@ -72,7 +72,7 @@
 								<%if(pageNum==1) {%>
 									<li class = "disabled"><span>≪</span></li>
 								<%} else {%>
-									<li><a href = "<%=request.getContextPath() %>/lprodPagingList?page=<%=pageNum-1 %>&pageSize=<%=pageVO.getPageSize() %>">≪</a></li>
+									<li><a href = "${pageContext.request.contextPath}/lprodPagingList?page=<%=pageNum-1 %>&pageSize=<%=pageVO.getPageSize() %>">≪</a></li>
 								<%}%>
 									<%for(int i = 1; i <= paginationSize; i++) {%>
 										<%if(pageVO.getPage() == i) {%>
@@ -81,7 +81,7 @@
 										</li>
 									<%} else {%>
 										<li>
-											<a href = "<%= request.getContextPath()%>/lprodPagingList?page=<%=i %>&pageSize=<%=pageVO.getPageSize()%>"><%=i %></a>
+											<a href = "${pageContext.request.contextPath}/lprodPagingList?page=<%=i %>&pageSize=<%=pageVO.getPageSize()%>"><%=i %></a>
 										</li>
 									<%}
 								}%>
@@ -92,7 +92,7 @@
 										</span>
 								<%} else {%>
 									<li>
-										<a href = "<%=request.getContextPath() %>/lprodPagingList?page=<%=pageNum+1%>&pageSize=<%=pageVO.getPageSize()%>">≫</a>
+										<a href = "${pageContext.request.contextPath}/lprodPagingList?page=<%=pageNum+1%>&pageSize=<%=pageVO.getPageSize()%>">≫</a>
 								<%} %>
 								</li>
 						</ul>

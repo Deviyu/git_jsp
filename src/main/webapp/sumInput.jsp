@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h2>두 값(을 포함한) 사이의 수의 합</h2>
-	<form action = "<%=request.getContextPath() %>/sumCalculation" method = "post">
+	<form action = "${pageContext.request.contextPath}/sumCalculation" method = "post">
 		시작값 : <input type = "number" name = "start"><br>
 		종료값 : <input type = "number" name = "end"><br>
 		<button>계산!</button>

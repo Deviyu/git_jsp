@@ -24,7 +24,7 @@
 	request.getRequestURI() : <%= request.getRequestURI() %><br>
 	request.getProtocol() : <%= request.getProtocol() %><br>
 	
-	<img src = "<%=request.getContextPath()%>/image/sally.png"/>
+	<img src = "${pageContext.request.contextPath}/image/sally.png"/>
 	
 	<%-- 파라미터 받기 --%>
 	<br>

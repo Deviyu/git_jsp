@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Servlet implementation class DbConnectionServlet
  */
-@WebServlet(urlPatterns="/DbConnectionServlet", loadOnStartup=1)
+@WebServlet(urlPatterns="/DbConnectionServlet")
 public class DbConnectionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
