@@ -1,6 +1,7 @@
 <%@page import="kr.or.ddit.paging.model.PageVO"%>
 <%@page import="kr.or.ddit.user.model.UserVO"%>
 <%@page import="java.util.List"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -41,24 +42,19 @@
 					<div class="table-responsive">
 						<table class="table table-striped">
 							<tr>
-								<th>사용자 아이디</th>
+								<th>사용자 아이디(JSTL)</th>
 								<th>사용자 이름</th>
 								<th>사용자 별명</th>
 								<th>등록일시</th>
 							</tr>
-							<%
-								List<UserVO> userList = (List<UserVO>) request.getAttribute("pagingList");
-								for (UserVO user : userList) {
-							%>
-							<tr>
-								<td><%=user.getUserId()%></td>
-								<td><%=user.getName()%></td>
-								<td><%=user.getAlias()%></td>
-								<td></td>
-							</tr>
-							<%
-								}
-							%>
+							<c:forEach items="${pagingList}" var="user">
+								<tr>
+									<td>${user.userId }</td>
+									<td>${user.name }</td>
+									<td>${user.alias }</td>
+									<td></td>
+								</tr>
+							</c:forEach>
 						</table>
 					</div>
 
@@ -79,6 +75,7 @@
 								<%} else {%>
 									<li><a href = "${pageContext.request.contextPath}/userPagingList?page=<%=pageNum-1 %>&pageSize=<%=pageVO.getPageSize() %>">≪</a></li>
 								<%}%>
+								
 									<%for(int i = 1; i <= paginationSize; i++) {%>
 										<%if(pageVO.getPage() == i) {%>
 										<li class = "active">

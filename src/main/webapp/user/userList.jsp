@@ -1,5 +1,6 @@
 <%@page import="kr.or.ddit.user.model.UserVO"%>
 <%@page import="java.util.List"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -36,7 +37,7 @@
 
 			<div class="row">
 				<div class="col-sm-8 blog-main">
-					<h2 class="sub-header">List</h2>
+					<h2 class="sub-header">List(EL)</h2>
 					<div class="table-responsive">
 						<table class="table table-striped">
 							<tr>
@@ -45,20 +46,15 @@
 								<th>사용자 별명</th>
 								<th>등록일시</th>
 							</tr>
-							<%
-								List<UserVO> userList = (List<UserVO>) request
-										.getAttribute("userList");
-								for (UserVO user : userList) {
-							%>
-							<tr>
-								<td><%=user.getUserId()%></td>
-								<td><%=user.getName()%></td>
-								<td><%=user.getAlias()%></td>
-								<td></td>
-							</tr>
-							<%
-								}
-							%>
+							<c:forEach items="${userList}" var="user">
+								<tr>
+									<td>${user.userId }</td>
+									<td>${user.name }</td>
+									<td>${user.alias}</td>
+									<td></td>
+								</tr>	
+							</c:forEach>		
+						
 						</table>
 					</div>
 
