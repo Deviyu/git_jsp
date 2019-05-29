@@ -32,13 +32,7 @@
 		
 		try {
 			long start = System.currentTimeMillis();
-			BasicDataSource bs = new BasicDataSource();
-			
-			bs.setUrl("jdbc:oracle:thin:@localhost:1521:xe");
-			bs.setDriverClassName("oracle.jdbc.driver.OracleDriver");
-			bs.setUsername("Devi");
-			bs.setPassword("java");
-			bs.setInitialSize(20);
+			BasicDataSource bs = (BasicDataSource)application.getAttribute("bs");
 			
 			for(int i = 0; i < 20; i++) {
 				conn = bs.getConnection();
@@ -47,7 +41,7 @@
 			
 			long end = System.currentTimeMillis();
 			System.out.println("duration : " + (end - start) + "ms");
-			bs.close();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
