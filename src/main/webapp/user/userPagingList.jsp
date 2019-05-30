@@ -15,9 +15,22 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="icon" href="../../favicon.ico">
-
+<style>
+	.userTr:hover { cursor: pointer; }
+</style>
 <title>User List(userList.jsp / el+jstl)</title>
 <%@include file="/common/basicLib.jsp"%>
+<script>
+	$(document).ready(function() {
+		$(".userTr").on("click", function() {
+			//userId를 획득하는 방법
+			var userId = $(this).find(".userId").text();
+// 			console.log($(this).data("userid"));
+			$("#userId").val(userId);
+			$("#frm").submit();
+		})
+	})
+	</script>
 </head>
 
 <body>
@@ -39,6 +52,10 @@
 			<div class="row">
 				<div class="col-sm-8 blog-main">
 					<h2 class="sub-header">List</h2>
+					<!-- 사용자 상세조회 페이지로 : userId -->
+					<form id = "frm" action="${pageContext.request.contextPath }/user" method="get">
+						<input type = "hidden" id = "userId" name="userId" />
+					</form>
 					<div class="table-responsive">
 						<table class="table table-striped">
 							<tr>
@@ -48,8 +65,8 @@
 								<th>등록일시</th>
 							</tr>
 							<c:forEach items="${pagingList}" var="user" varStatus="status">
-								<tr>
-									<td>${user.userId }</td>
+								<tr class = "userTr" data-userid="${user.userId }">
+									<td class="userId">${user.userId }</td>
 									<td>${user.name }</td>
 									<td>${user.alias }</td>
 									<td></td>
