@@ -1,6 +1,8 @@
 package kr.or.ddit.login.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.or.ddit.user.model.UserVO;
+import kr.or.ddit.user.service.IUserService;
+import kr.or.ddit.user.service.UserService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,6 +46,12 @@ public class LoginController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	
+	private IUserService userService;
+	@Override
+	public void init() throws ServletException {
+		userService = new UserService();
+	}
+	
 	// 사용자 로그인 화면 요청 처리
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.debug("LoginController doGet()");
@@ -69,18 +79,21 @@ public class LoginController extends HttpServlet {
 	// 로그인 요청 처리
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.debug("parameter userId (Ctrl) : {}", request.getParameter("userId"));
-		logger.debug("parameter password (Ctrl) : {}", request.getParameter("password"));
+		logger.debug("parameter pass (Ctrl) : {}", request.getParameter("password"));
 		logger.debug("parameter rememberMe(Ctrl) : {}", request.getParameter("rememberMe"));
 		//사용자 Parameter : userId, password, rememberMe
 		String userId = request.getParameter("userId");
-		String password = request.getParameter("password");
+		String pass = request.getParameter("password");
 		String rememberMe = request.getParameter("rememberMe");
+		
 		//db에서 해당사용자의 정보조회 (service, dao 필요)
-		// omit.
+		UserVO loginVO = new UserVO(userId, pass);
+		
+		UserVO userVO = userService.getUser(userId);
 		
 		//해당 사용자 정보를 이용하여 사용자가 보낸 userId, password가 일치하는지 검사
-		// -> userId : brown, password : brown1234일때 일치판정
-		if(userId.equals("brown") && password.equals("brown1234")) {
+		// -> DB에 존재하는 userId / password 일때
+		if(userVO!=null && userVO.getPass().equals(pass)) {
 			//만약, 일치하면.. (로그인 성공)
 			int cookieMaxAge = 0;
 			if(rememberMe!=null) 
@@ -97,7 +110,7 @@ public class LoginController extends HttpServlet {
 				
 			//Session에 사용자 정보를 넣어준다. (사용 빈도가 높음)
 			HttpSession session = request.getSession();
-			session.setAttribute("USER_INFO", new UserVO("브라운", "brown", "곰"));
+			session.setAttribute("USER_INFO", userVO);
 			//메인화면으로 이동 (Dispatch)
 			request.getRequestDispatcher("/main.jsp").forward(request, response);
 		} else {

@@ -14,16 +14,6 @@ public class UserDao implements IUserDao{
 	private static final Logger logger = LoggerFactory
 			.getLogger(UserDao.class);
 	
-	public static void main(String[] args) {
-		/***Given***/
-		IUserDao userDao = new UserDao();
-		
-		/***When***/
-		UserVO userVO = userDao.getUser("brown");
-		
-		/***Then***/
-		logger.debug("userVO : {}", userVO);
-	}
 
 	/**
 	* Method : userList

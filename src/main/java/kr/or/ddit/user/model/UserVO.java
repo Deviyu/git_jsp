@@ -7,12 +7,15 @@ public class UserVO {
 	private String pass;
 	
 	public UserVO(String name, String userId, String alias) {
-		super();
 		this.name = name;
 		this.userId = userId;
 		this.alias = alias;
 	}
 	
+	public UserVO(String userId, String pass) {
+		this.userId = userId;
+		this.pass = pass;
+	}
 
 	public UserVO() {}
 
