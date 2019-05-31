@@ -34,4 +34,33 @@
  		SELECT COUNT(*)
  		FROM USERS
  	</select>
+ 	<insert id="insertUser" parameterType ="UserVO">
+ 		INSERT INTO USERS
+	 			(
+	 				 USERID
+	 				,NAME
+	 				,ALIAS
+	 				,PASS
+	 				,ADDR1
+	 				,ADDR2
+	 				,ZIPCD
+	 				,BIRTH
+	 				,PATH
+	 				,FILENAME
+	 			)
+ 					 VALUES
+ 				(
+ 					 #{userId}
+ 					,#{name}
+ 					,#{alias}
+ 					,#{pass}
+ 					,#{addr1}
+ 					,#{addr2}
+ 					,#{zipcd}
+ 					,TO_DATE(#{birth}, 'yyyy-mm-dd')
+ 					,'D:/upload/'||#{filename}
+ 					,#{filename}
+ 				)
+ 	</insert>
+ 	
 </mapper>

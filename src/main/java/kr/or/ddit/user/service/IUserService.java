@@ -37,4 +37,14 @@ public interface IUserService {
 	 * Method 설명 : 특정 페이지의 사용자 정보 조회
 	 */
 	Map<String, Object> userPagingList(PageVO pageVO);
+	
+	/**
+	 * Method : insertUser
+	 * 작성자 : jakeh
+	 * 변경이력 : 2019-05-30 처음 생성
+	 * @param userVO
+	 * @return
+	 * Method 설명 : 사용자 등록 메서드
+	 */
+	int insertUser(UserVO userVO);
 }

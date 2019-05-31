@@ -7,6 +7,7 @@ import java.util.List;
 
 import kr.or.ddit.paging.model.PageVO;
 import kr.or.ddit.user.model.UserVO;
+import oracle.sql.DATE;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -130,4 +131,15 @@ public class UserDaoTest {
 		assertEquals(105, usersCnt);
 		logger.debug("usersCnt : {}", usersCnt);
 	} 
+	
+	@Test
+	public void insertUserTest() {
+		/***Given***/
+		UserVO userVO = new UserVO("jakeharunt", "유승진", "Devi", "java201901", "대전광역시 중구 태평로 15 (태평동, 버드내마을아파트)", "106동 204호", "34890", "1991-04-22", "d:/upload/noimage.png");
+		/***When***/
+		int result = userDao.insertUser(userVO);
+		/***Then***/
+		logger.debug("result : {}", result);
+		assertEquals(1, result);
+	}
 }

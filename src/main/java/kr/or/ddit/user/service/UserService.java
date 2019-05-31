@@ -80,4 +80,17 @@ public class UserService implements IUserService{
 		return resultMap;
 	}
 	
+	/**
+	 * Method : insertUser
+	 * 작성자 : jakeh
+	 * 변경이력 : 2019-05-30 처음 생성
+	 * @param userVO
+	 * @return
+	 * Method 설명 : 사용자 등록 메서드
+	 */
+	@Override
+	public int insertUser(UserVO userVO) {
+		return dao.insertUser(userVO);
+	}
+	
 }

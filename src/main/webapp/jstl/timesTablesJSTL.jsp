@@ -5,17 +5,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>따-란</title>
 <style>
-	td { border : 2px solid black; width : 100px; height : 45px; text-align : center; }
+	td { border : 1px solid black; width : 100px; height : 45px; text-align : center; }
 </style>
 </head>
 <body>
 	<table>
-		<c:forEach var = "i" begin ="1" end ="9">
+		<c:forEach var="i" begin="1" end="${empty param.i ? 9 : param.i }">
 			<tr>
-			<c:forEach var = "j" begin ="2" end = "9">
-				<td>${j} * ${i } = ${j*i }</td>
+			<c:forEach var="j" begin="2" end="${empty param.j ? 9 : param.j }">
+				<td>${j } * ${i } = ${j*i }</td>
 			</c:forEach>
 			</tr>
 		</c:forEach>

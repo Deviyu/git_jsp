@@ -79,4 +79,12 @@ public class UserDao implements IUserDao{
 	}
 	
 	
+	public int insertUser(UserVO userVO){
+		SqlSession sqlSession = MyBatisUtil.getSqlSession();
+		int result = sqlSession.insert("user.insertUser", userVO);
+		sqlSession.commit();
+		logger.debug("result : {}", result);
+		return result;
+	}
+	
 }

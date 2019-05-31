@@ -44,4 +44,6 @@ public interface IUserDao {
 	 * Method 설명 : 전체 사용자 수 조회
 	 */
 	int usersCnt();
+	
+	int insertUser(UserVO userVO);
 }

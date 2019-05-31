@@ -75,7 +75,7 @@
 						</table>
 					</div>
 
-					<a class="btn btn-default pull-right">사용자 등록</a>
+					<a class="btn btn-default pull-right" href = "${pageContext.request.contextPath }/user/userForm.jsp">사용자 등록</a>
 					<!-- 
 						사용자 수 : 105건
 						출력될 페이지 수 : 11건
