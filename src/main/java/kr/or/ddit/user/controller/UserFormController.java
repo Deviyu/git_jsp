@@ -15,10 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import kr.or.ddit.encrypt.kisa.sha256.KISA_SHA256;
 import kr.or.ddit.user.model.UserVO;
 import kr.or.ddit.user.service.IUserService;
 import kr.or.ddit.user.service.UserService;
-import kr.or.ddit.util.CalendarUtil;
 import kr.or.ddit.util.PartUtil;
 
 import org.slf4j.Logger;
@@ -63,6 +63,8 @@ public class UserFormController extends HttpServlet {
 		String filename 	 = request.getParameter("filename");
 		String birth_str	 = request.getParameter("birth");
 		
+		String pass_enc = KISA_SHA256.encrypt(pass);
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date birth 			 = null;
 		try { birth = sdf.parse(birth_str); } catch (ParseException e) { e.printStackTrace();}
@@ -70,7 +72,7 @@ public class UserFormController extends HttpServlet {
 		
 
 		
-		UserVO userVO = new UserVO(userId, name, alias, pass,
+		UserVO userVO = new UserVO(userId, name, alias, pass_enc,
 				addr1, addr2, zipcd, birth, filename);
 		
 		//사용자가 입력한 userId가 이미 존재하는 userId인지 체크
