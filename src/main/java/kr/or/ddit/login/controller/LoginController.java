@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.or.ddit.encrypt.kisa.sha256.KISA_SHA256;
 import kr.or.ddit.user.model.UserVO;
 import kr.or.ddit.user.service.IUserService;
 import kr.or.ddit.user.service.UserService;
@@ -83,17 +84,16 @@ public class LoginController extends HttpServlet {
 		logger.debug("parameter rememberMe(Ctrl) : {}", request.getParameter("rememberMe"));
 		//사용자 Parameter : userId, password, rememberMe
 		String userId = request.getParameter("userId");
-		String pass = request.getParameter("password");
+		String password = request.getParameter("password");
 		String rememberMe = request.getParameter("rememberMe");
-		
+		String encryptedPass = KISA_SHA256.encrypt(password);
 		//db에서 해당사용자의 정보조회 (service, dao 필요)
-		UserVO loginVO = new UserVO(userId, pass);
 		
 		UserVO userVO = userService.getUser(userId);
 		
 		//해당 사용자 정보를 이용하여 사용자가 보낸 userId, password가 일치하는지 검사
 		// -> DB에 존재하는 userId / password 일때
-		if(userVO!=null && userVO.getPass().equals(pass)) {
+		if(userVO!=null && userVO.getPass().equals(encryptedPass)) {
 			//만약, 일치하면.. (로그인 성공)
 			int cookieMaxAge = 0;
 			if(rememberMe!=null) 
