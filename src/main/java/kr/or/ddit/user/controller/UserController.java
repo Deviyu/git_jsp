@@ -35,6 +35,8 @@ public class UserController extends HttpServlet {
 		logger.debug("UserController doGet()");
 		String userId = request.getParameter("userId");
 		UserVO userVO = userService.getUser(userId);
+		
+		request.setAttribute("result", request.getParameter("result"));
 		request.setAttribute("userVO", userVO);
 		request.getRequestDispatcher("/user/user.jsp").forward(request, response);
 	}

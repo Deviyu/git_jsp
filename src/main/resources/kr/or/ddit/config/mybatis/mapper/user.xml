@@ -57,10 +57,27 @@
  					,#{addr1}
  					,#{addr2}
  					,#{zipcd}
- 					,TO_DATE(#{birth}, 'yyyy-mm-dd')
+ 					,#{birth}
  					,'D:/upload/'||#{filename}
  					,#{filename}
  				)
  	</insert>
+ 	<delete id ="deleteUser" parameterType="String">
+ 		DELETE FROM USERS
+ 		WHERE USERID = #{userId}
+ 	</delete>
  	
+ 	<update id="updateUser" parameterType="UserVO">
+ 		UPDATE	USERS
+ 		SET		 NAME = #{name}
+ 				,ALIAS = #{alias}
+ 				,PASS = #{pass}
+ 				,ADDR1 = #{addr1}
+ 				,ADDR2 = #{addr2}
+ 				,ZIPCD = #{zipcd}
+ 				,BIRTH = #{birth}
+ 				,PATH = 'D:/upload/'||#{filename}
+ 				,FILENAME = #{filename}
+ 		WHERE	USERID = #{userId}
+ 	</update>
 </mapper>

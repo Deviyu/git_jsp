@@ -3,6 +3,7 @@ package kr.or.ddit.user.service;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -90,4 +91,40 @@ public class UserServiceTest {
 		double paginationSize = Math.ceil((double)usersCnt/pageSize);
 		assertEquals(11, (int)paginationSize);
 	}
+	
+	/**
+	 * Method : insert_DeleteUserTest
+	 * 작성자 : jakeh
+	 * 변경이력 : 2019-05-31 처음 생성
+	 * Method 설명 : 사용자 추가 / 삭제 테스트
+	 */
+	@Test
+	public void insert_DeleteUserTest() {
+		/***Given***/
+		String userId = "jakeharunt";
+		UserVO userVO = new UserVO(userId, "유승진", "Devi", "java201901", "대전광역시 중구 태평로 15 (태평동, 버드내마을아파트)", "106동 204호", "34890", new Date(), "noimage.png");
+		/***When***/
+		int insertResult = userService.insertUser(userVO);
+		int deleteResult = userService.deleteUser(userId);
+		/***Then***/
+		assertEquals(1, insertResult);
+		assertEquals(1, deleteResult);
+	}
+	
+	/**
+	 * Method : updateUserTest
+	 * 작성자 : jakeh
+	 * 변경이력 : 2019-05-31 처음 생성
+	 * Method 설명 : 사용자 수정 테스트
+	 */
+	@Test
+	public void updateUserTest() {
+		/***Given***/
+		UserVO userVO = new UserVO("jakeharunt", "유승진22", "Devi22", "22java201901", "대전광역시 중구 태평로 15 (태평동, 버드내마을아파트)", "104동 206호", "34890", new Date(), "noimage.png");
+		/***When***/
+		int updateResult = userService.updateUser(userVO);
+		/***Then***/
+		assertEquals(1, updateResult);
+	}
+	
 }

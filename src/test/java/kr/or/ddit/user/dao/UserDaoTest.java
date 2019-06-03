@@ -3,11 +3,11 @@ package kr.or.ddit.user.dao;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.Date;
 import java.util.List;
 
 import kr.or.ddit.paging.model.PageVO;
 import kr.or.ddit.user.model.UserVO;
-import oracle.sql.DATE;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -132,14 +132,50 @@ public class UserDaoTest {
 		logger.debug("usersCnt : {}", usersCnt);
 	} 
 	
+	/**
+	 * Method : insertUserTest
+	 * 작성자 : jakeh
+	 * 변경이력 : 2019-05-30 처음 생성
+	 * Method 설명 : 사용자 등록 Test
+	 */
 	@Test
 	public void insertUserTest() {
 		/***Given***/
-		UserVO userVO = new UserVO("jakeharunt", "유승진", "Devi", "java201901", "대전광역시 중구 태평로 15 (태평동, 버드내마을아파트)", "106동 204호", "34890", "1991-04-22", "d:/upload/noimage.png");
+		//사용자정보를 담고 있는 vo객체 준비
+		UserVO userVO = new UserVO("jakeharunt", "유승진", "Devi", "java201901", "대전광역시 중구 태평로 15 (태평동, 버드내마을아파트)", "106동 204호", "34890", new Date(), "d:/upload/noimage.png");
 		/***When***/
+		//userDao.insertUser()
 		int result = userDao.insertUser(userVO);
 		/***Then***/
+		//result == 1
 		logger.debug("result : {}", result);
 		assertEquals(1, result);
+	}
+	
+	/**
+	 * Method : deleteUserTest
+	 * 작성자 : jakeh
+	 * 변경이력 :
+	 * Method 설명 : 사용자 삭제 테스트
+	 */
+	@Test
+	public void deleteUserTest() {
+		/***Given***/
+		String userId = "jakeharunt";
+		/***When***/
+		int result = userDao.deleteUser(userId);
+		/***Then***/
+		assertEquals(1, result);
+
+	}
+	
+	@Test
+	public void updateUserTest() {
+		/***Given***/
+		UserVO userVO = new UserVO("jakeharunt", "updateTest", "Devi", "java201901", "대전광역시 중구 태평로 15 (태평동, 버드내마을아파트)", "106동 204호", "34890", new Date(), "noimage.png");
+		/***When***/
+		int updateResult = userDao.updateUser(userVO);
+		/***Then***/
+		assertEquals(1, updateResult);
 	}
 }

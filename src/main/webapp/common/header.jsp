@@ -29,7 +29,14 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#">Dashboard</a></li>
 				<li><a href="#">Settings</a></li>
-				<li><a href="#">Profile</a></li>
+				<c:choose>
+					<c:when test="${USER_INFO eq null }">
+						<li><a href="#">Profile</a></li>
+					</c:when>
+					<c:otherwise>
+						<li><a href="${pageContext.request.contextPath }/user?userId=${USER_INFO.userId}">Profile</a></li>
+					</c:otherwise>
+				</c:choose>
 				<c:choose>
 					<c:when test="${USER_INFO eq null}">
 						<li><a href="${pageContext.request.contextPath}/login">Login</a></li>

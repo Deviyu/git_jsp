@@ -39,8 +39,9 @@ public class ProfileController extends HttpServlet {
 		String userId = request.getParameter("userId");
 		UserVO userVO = userService.getUser(userId);
 		String path = userVO.getPath();
+		String filename = userVO.getFilename();
 		logger.debug(path);
-		if(path==null) path = "D:/upload/noimage.png"; 
+		if(path==null || filename==null ) path = "D:/upload/noimage.png"; 
 		
 		File image = new File(path);
 		ServletOutputStream sos = response.getOutputStream();

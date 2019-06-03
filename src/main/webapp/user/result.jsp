@@ -6,16 +6,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
+<%@include file="/common/basicLib.jsp"%>
 </head>
 <body>
 <c:choose>
 	<c:when test="${result eq 1 }">
 		<script>alert("사용자 등록에 성공헀습니다.");</script>
+		<c:redirect url="/userPagingList"/>
 	</c:when>
 	<c:otherwise>
 		<script>alert("사용자 등록에 실패했습니다.");</script>
+		<c:redirect url="/userPagingList"/>
 	</c:otherwise>
 </c:choose>
-<c:redirect url="/userPagingList"/>
 </body>
 </html>

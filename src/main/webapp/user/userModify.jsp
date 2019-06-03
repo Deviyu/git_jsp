@@ -2,6 +2,7 @@
 <%@page import="kr.or.ddit.user.model.UserVO"%>
 <%@page import="java.util.List"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -31,12 +32,10 @@
 		    }).open();
 	    })
 	    
-	    //사용자 등록 버튼 클릭 이벤트 핸들러
-	    $("#userRegBtn").on("click", function() {
+	    $("#userMdfBtn").on("click", function() {
 	    	console.log("userRegBtn Clicked!");
 	    	//유효성 체크
-	    	
-	    	//여기까지 도달하면 유효성 검사 완료(submit)
+	   
 			$("#frm").submit();	    	
 	    })
     });
@@ -55,56 +54,59 @@
 
 			<div class="row">
 				<div class="col-sm-8 blog-main">
-					<h2 class="sub-header">사용자 등록</h2>
+					<h2 class="sub-header">사용자 수정</h2>
 					
-					<form class="form-horizontal" id="frm" role="form" action="${pageContext.request.contextPath }/userForm" method="post">
+					<form class="form-horizontal" id="frm" role="form" action="${pageContext.request.contextPath }/userModify" method="post">
 					
 					<div class="form-group">
 						<label for="userNm" class="col-sm-2 control-label">프로필 사진</label>
 						<div class="col-sm-10">
-							<input type = "file" id="filename" name="filename" value = "${param.filename }"/>
+							<input type = "file" id="filename" name="filename" value = "${userVO.filename }"/>
 						</div>
 					</div>
 					
 					<div class="form-group">
 						<label for="name" class="col-sm-2 control-label">사용자 아이디</label>
 						<div class="col-sm-10">
-								<input type="text" class="form-control" id="userId" name="userId" placeholder="사용자 아이디" value = "${param.userId }">
+								<label>${userVO.userId }</label>
+								<input type = "hidden" name="userId" value="${userVO.userId }">
+<%-- 								<input type="text" class="form-control" id="userId" name="userId" placeholder="사용자 아이디" value = "${userVO.userId }"> --%>
 						</div>
 					</div>
 					
 					<div class="form-group">
 						<label for="userNm" class="col-sm-2 control-label">비밀번호</label>
 						<div class="col-sm-10">
-								<input type="password" class="form-control" id="pass" name="pass" placeholder="비밀번호">
+								<input type="password" class="form-control" id="pass" name="pass" placeholder="비밀번호" value= "${userVO.pass }">
 						</div>
 					</div>
 					
 					<div class="form-group">
 						<label for="userNm" class="col-sm-2 control-label">사용자 이름</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="name" name="name" placeholder="사용자 이름" value = "${param.name }">
+							<input type="text" class="form-control" id="name" name="name" placeholder="사용자 이름" value = "${userVO.name }">
 						</div>
 					</div>
 					
 					<div class="form-group">
 						<label for="userNm" class="col-sm-2 control-label">생일</label>
 						<div class="col-sm-10">
-							<input type="date" class="form-control" id="birth" name="birth" value = "${param.birth }">
+							<fmt:formatDate value="${userVO.birth }" var="birth" pattern="yyyy-MM-dd"/>
+							<input type="date" class="form-control" id="birth" name="birth" value = "${birth }">
 						</div>
 					</div>
 					
 					<div class="form-group">
 						<label for="userNm" class="col-sm-2 control-label">별명</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="alias" name="alias" placeholder="별명" value = "${param.alias }">
+							<input type="text" class="form-control" id="alias" name="alias" placeholder="별명" value = "${userVO.alias }">
 						</div>
 					</div>
 					
 					<div class="form-group">
 						<label for="userNm" class="col-sm-2 control-label">우편번호</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control" id="zipcd" name="zipcd" placeholder="우편번호" readonly value = ${param.zipcd }>
+							<input type="text" class="form-control" id="zipcd" name="zipcd" placeholder="우편번호" readonly value = ${userVO.zipcd }>
 						</div>
 						<div class="col-sm-1">
 							<button type="button" class="btn btn-default" id="searchZip">주소 검색</button>
@@ -114,20 +116,20 @@
 					<div class="form-group">
 						<label for="userNm" class="col-sm-2 control-label">주소</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="addr1" name="addr1" placeholder="주소" readonly value = "${param.addr1 }">
+							<input type="text" class="form-control" id="addr1" name="addr1" placeholder="주소" readonly value = "${userVO.addr1 }">
 						</div>
 					</div>
 					
 					<div class="form-group">
 						<label for="userNm" class="col-sm-2 control-label">상세주소</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="addr2" name="addr2" placeholder="상세주소" value = "${param.addr2 }">
+							<input type="text" class="form-control" id="addr2" name="addr2" placeholder="상세주소" value = "${userVO.addr2 }">
 						</div>
 					</div>
 					
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button type="button" id="userRegBtn" class="btn btn-default">사용자 등록</button>
+							<button type="button" id="userMdfBtn" class="btn btn-default">수정 완료</button>
 						</div>
 					</div>
 				</form>
@@ -137,6 +139,3 @@
 	</div>
 </body>
 </html>
-	<c:if test="${duplId == 'true' }">
-		<script>alert("이미 존재하는 아이디입니다.")</script>
-	</c:if>

@@ -47,4 +47,24 @@ public interface IUserService {
 	 * Method 설명 : 사용자 등록 메서드
 	 */
 	int insertUser(UserVO userVO);
+	
+	/**
+	 * Method : deleteUser
+	 * 작성자 : jakeh
+	 * 변경이력 : 2019-05-31 처음 생성
+	 * @param userId
+	 * @return
+	 * Method 설명 : 사용자 삭제 메서드
+	 */
+	int deleteUser(String userId);
+	
+	/**
+	 * Method : updateUser
+	 * 작성자 : jakeh
+	 * 변경이력 : 2019-05-31 처음 생성
+	 * @param userVO
+	 * @return
+	 * Method 설명 : 사용자 수정 메서드
+	 */
+	int updateUser(UserVO userVO);
 }

@@ -93,4 +93,30 @@ public class UserService implements IUserService{
 		return dao.insertUser(userVO);
 	}
 	
+	/**
+	 * Method : updateUser
+	 * 작성자 : jakeh
+	 * 변경이력 : 2019-05-31 처음 생성
+	 * @param userVO
+	 * @return
+	 * Method 설명 : 사용자 삭제 메서드
+	 */
+	@Override
+	public int deleteUser(String userId) {
+		return dao.deleteUser(userId);
+	}
+
+	/**
+	 * Method : updateUser
+	 * 작성자 : jakeh
+	 * 변경이력 : 2019-05-31 처음 생성
+	 * @param userVO
+	 * @return
+	 * Method 설명 : 사용자 수정 메서드
+	 */
+	@Override
+	public int updateUser(UserVO userVO) {
+		return dao.updateUser(userVO);
+	}
+	
 }

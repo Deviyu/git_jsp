@@ -52,10 +52,12 @@
 			<div class="row">
 				<div class="col-sm-8 blog-main">
 					<h2 class="sub-header">List</h2>
+					
 					<!-- 사용자 상세조회 페이지로 : userId -->
 					<form id = "frm" action="${pageContext.request.contextPath }/user" method="get">
 						<input type = "hidden" id = "userId" name="userId" />
 					</form>
+					
 					<div class="table-responsive">
 						<table class="table table-striped">
 							<tr>
@@ -75,7 +77,7 @@
 						</table>
 					</div>
 
-					<a class="btn btn-default pull-right" href = "${pageContext.request.contextPath }/user/userForm.jsp">사용자 등록</a>
+					<a class="btn btn-default pull-right" href = "${pageContext.request.contextPath }/userForm">사용자 등록</a>
 					<!-- 
 						사용자 수 : 105건
 						출력될 페이지 수 : 11건
@@ -126,3 +128,6 @@
 	</div>
 </body>
 </html>
+	<c:if test="${param.result eq 1 }">
+		<script>alert("사용자 등록이 완료되었습니다.")</script>
+	</c:if>
