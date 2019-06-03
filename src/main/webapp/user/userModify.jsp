@@ -38,6 +38,14 @@
 	   
 			$("#frm").submit();	    	
 	    })
+	    
+	    $("#filename").on("change", function() {
+	    	if(!($("#filename").val())){
+	    		$("#changeImg").prop("checked", true);
+	    	} else {
+	    		$("#changeImg").prop("checked", false);
+	    	}
+	    })
     });
 </script>
 </head>
@@ -56,12 +64,18 @@
 				<div class="col-sm-8 blog-main">
 					<h2 class="sub-header">사용자 수정</h2>
 					
-					<form class="form-horizontal" id="frm" role="form" action="${pageContext.request.contextPath }/userModify" method="post">
+					<form class="form-horizontal" id="frm" role="form" 
+							action="${pageContext.request.contextPath }/userModify" 
+							method="post" enctype="multipart/form-data">
 					
 					<div class="form-group">
 						<label for="userNm" class="col-sm-2 control-label">프로필 사진</label>
 						<div class="col-sm-10">
-							<input type = "file" id="filename" name="filename" value = "${userVO.filename }"/>
+							<input type = "file" id="filename" name="filename" accept="image/*"/>
+						</div>
+						<div class="col-sm-3">
+							<input type = "checkbox" id ="changeImg" name="changeImg" value = "changeImg" checked>
+							<label for ="changeImg">이미지 변경 안함</label>
 						</div>
 					</div>
 					

@@ -1,19 +1,25 @@
 package kr.or.ddit.user.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import kr.or.ddit.user.model.UserVO;
 import kr.or.ddit.user.service.IUserService;
 import kr.or.ddit.user.service.UserService;
+import kr.or.ddit.util.CalendarUtil;
+import kr.or.ddit.util.PartUtil;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +28,7 @@ import org.slf4j.LoggerFactory;
  * Servlet implementation class UserCreateController
  */
 @WebServlet("/userForm")
+@MultipartConfig(maxFileSize=1024*1024*3,maxRequestSize=1024*1024*15)
 public class UserFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -45,6 +52,7 @@ public class UserFormController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
+		
 		String userId		 = request.getParameter("userId");
 		String name 		 = request.getParameter("name");
 		String pass 		 = request.getParameter("pass");
@@ -59,6 +67,9 @@ public class UserFormController extends HttpServlet {
 		Date birth 			 = null;
 		try { birth = sdf.parse(birth_str); } catch (ParseException e) { e.printStackTrace();}
 		
+		
+
+		
 		UserVO userVO = new UserVO(userId, name, alias, pass,
 				addr1, addr2, zipcd, birth, filename);
 		
@@ -67,6 +78,27 @@ public class UserFormController extends HttpServlet {
 		logger.debug("checkDupl : {}",checkDupl);
 		//존재하지 않을 경우
 		if(checkDupl==null) {
+			
+			//profile 파일 업로드 처리
+			Part profile_part = request.getPart("filename");
+			
+			if(profile_part.getSize()>0) {
+				//사용자가 파일을 업로드한 경우
+				String contentDisposition = profile_part.getHeader("content-disposition");
+				String fileName = PartUtil.getFileName(contentDisposition);
+				String extention = PartUtil.getExtention(fileName);
+				
+				//연도에 해당하는 폴더가 있는지, 연도안에 월에 해당하는 폴더가 있는지
+				PartUtil.checkUploadFolder();
+				File uploadFolder = new File(PartUtil.getUploadPath());
+				if(uploadFolder.exists()) {
+					String path = uploadFolder+ File.separator + UUID.randomUUID().toString() + extention;
+					profile_part.write(path);
+					profile_part.delete();
+					userVO.setPath(path);
+					userVO.setFilename(fileName);
+				} 
+			}
 			int result = userService.insertUser(userVO);
 			if(result == 1) {
 				//정상입력시

@@ -58,8 +58,8 @@
  					,#{addr2}
  					,#{zipcd}
  					,#{birth}
- 					,'D:/upload/'||#{filename}
- 					,#{filename}
+ 					,#{path, jdbcType=VARCHAR}
+ 					,#{filename, jdbcType=VARCHAR}
  				)
  	</insert>
  	<delete id ="deleteUser" parameterType="String">
@@ -76,8 +76,8 @@
  				,ADDR2 = #{addr2}
  				,ZIPCD = #{zipcd}
  				,BIRTH = #{birth}
- 				,PATH = 'D:/upload/'||#{filename}
- 				,FILENAME = #{filename}
+ 				,PATH = #{path, jdbcType=VARCHAR}
+ 				,FILENAME = #{filename, jdbcType=VARCHAR}
  		WHERE	USERID = #{userId}
  	</update>
 </mapper>

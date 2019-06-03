@@ -55,24 +55,10 @@ public class FileUploadServlet extends HttpServlet {
 			String fileName = PartUtil.getFileName(contentDisposition);
 			String extentionName = PartUtil.getExtention(fileName);
 			
-			CalendarUtil calUtil = new CalendarUtil();
-			String year = calUtil.getYear();
-			String month = calUtil.getMonth();
-			
 			//연도에 해당하는 폴더가 있는지, 연도안에 월에 해당하는 폴더가 있는지
-
-			File yyyyFolder = new File("d:\\upload\\"+year);
-			if(!yyyyFolder.exists()) {
-				yyyyFolder.mkdir();
-			}
-			//월에 해당하는 폴더가 있는지 확인
-			File mmFolder = new File("d:/upload/2019/"+month);
-			if(!mmFolder.exists()) {
-				mmFolder.mkdir();
-			}
+			PartUtil.checkUploadFolder();
 			
-			File uploadFolder = new File("d:/upload"+ File.separator 
-										+ calUtil.getDatePath());
+			File uploadFolder = new File(PartUtil.getUploadPath());
 			if(uploadFolder.exists()) {
 				profile_part.write(uploadFolder+ File.separator + UUID.randomUUID().toString() + extentionName);
 				profile_part.delete();

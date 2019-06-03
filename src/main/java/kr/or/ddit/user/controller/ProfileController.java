@@ -38,10 +38,7 @@ public class ProfileController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = request.getParameter("userId");
 		UserVO userVO = userService.getUser(userId);
-		String path = userVO.getPath();
-		String filename = userVO.getFilename();
-		logger.debug(path);
-		if(path==null || filename==null ) path = "D:/upload/noimage.png"; 
+		String path = userVO.getPath() == null ? getServletContext().getRealPath("/image/no_image.gif") : userVO.getPath();
 		
 		File image = new File(path);
 		ServletOutputStream sos = response.getOutputStream();
