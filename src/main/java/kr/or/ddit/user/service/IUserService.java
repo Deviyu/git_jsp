@@ -67,4 +67,13 @@ public interface IUserService {
 	 * Method 설명 : 사용자 수정 메서드
 	 */
 	int updateUser(UserVO userVO);
+	
+	/**
+	 * Method : encryptAllUserPass
+	 * 작성자 : jakeh
+	 * 변경이력 : 2019-06-04 처음 생성
+	 * @return
+	 * Method 설명 : 사용자 비밀번호 암호화 일괄 적용 Batch
+	 */
+	int encryptAllUserPass();
 }

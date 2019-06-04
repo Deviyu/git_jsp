@@ -129,4 +129,31 @@ public class UserDao implements IUserDao{
 		return result;
 	}
 	
+	/**
+	 * Method : userList_2
+	 * 작성자 : jakeh
+	 * 변경이력 : 2019-06-04 처음 생성
+	 * @param sqlSession
+	 * @return
+	 * Method 설명 : 비밀번호 암호화 적용대상 사용자 전체 조회 메서드
+	 */
+	@Override
+	public List<UserVO> userList_2(SqlSession sqlSession) {
+		return sqlSession.selectList("user.userList_2");
+	}
+	
+	/**
+	 * Method : updateUserEncryptPass
+	 * 작성자 : jakeh
+	 * 변경이력 : 2019-06-04 처음 생성
+	 * @param sqlSession
+	 * @param userVO
+	 * @return
+	 * Method 설명 : 사용자 비밀번호 암호화 적용
+	 */
+	@Override
+	public int updateUserEncryptPass(SqlSession sqlSession, UserVO userVO) {
+		return sqlSession.update("user.updateUserEncryptPass",userVO);
+	}
+	
 }

@@ -5,6 +5,8 @@ import java.util.List;
 import kr.or.ddit.paging.model.PageVO;
 import kr.or.ddit.user.model.UserVO;
 
+import org.apache.ibatis.session.SqlSession;
+
 public interface IUserDao {
 	/**
 	* Method : userList
@@ -74,4 +76,25 @@ public interface IUserDao {
 	 * Method 설명 : 사용자 수정 메서드
 	 */
 	int updateUser(UserVO userVO);
+	
+	/**
+	 * Method : userList_2
+	 * 작성자 : jakeh
+	 * 변경이력 : 2019-06-04 처음 생성
+	 * @param sqlSession
+	 * @return
+	 * Method 설명 : 비밀번호 암호화 적용대상 사용자 전체 조회 메서드
+	 */
+	List<UserVO> userList_2(SqlSession sqlSession);
+
+	/**
+	 * Method : updateUserEncryptPass
+	 * 작성자 : jakeh
+	 * 변경이력 : 2019-06-04 처음 생성
+	 * @param sqlSession
+	 * @param userVO
+	 * @return
+	 * Method 설명 : 사용자 비밀번호 암호화 적용
+	 */
+	int updateUserEncryptPass(SqlSession sqlSession, UserVO userVO);
 }

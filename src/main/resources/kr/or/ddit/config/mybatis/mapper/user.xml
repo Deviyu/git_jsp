@@ -80,4 +80,19 @@
  				,FILENAME = #{filename, jdbcType=VARCHAR}
  		WHERE	USERID = #{userId}
  	</update>
+ 	
+ 	
+ 	<!-- 비밀번호 업데이트 대상자 조회 -->
+ 	<select id="userList_2" resultType="UserVO">
+ 		SELECT	*
+ 		FROM	USERS
+ 		WHERE	USERID NOT IN ('brain', 'jakeharunt')
+ 	</select>
+ 	
+ 	<!-- 사용자 비밀번호 업데이트 -->
+ 	<update id="updateUserEncryptPass" parameterType="UserVO">
+ 		UPDATE	USERS	
+ 		SET		PASS = #{pass}
+ 		WHERE	USERID = #{userId}
+ 	</update>
 </mapper>

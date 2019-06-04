@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import kr.or.ddit.encrypt.kisa.sha256.KISA_SHA256;
 import kr.or.ddit.user.model.UserVO;
 import kr.or.ddit.user.service.IUserService;
 import kr.or.ddit.user.service.UserService;
@@ -54,7 +55,6 @@ public class UserModifyController extends HttpServlet {
 		logger.debug("ModifyController doPost()");
 		
 		String userId		 = request.getParameter("userId");
-		logger.debug("userId(Modify) : {}",userId);
 		String name 		 = request.getParameter("name");
 		String pass 		 = request.getParameter("pass");
 		String alias 		 = request.getParameter("alias");
@@ -65,6 +65,7 @@ public class UserModifyController extends HttpServlet {
 		String birth_str	 = request.getParameter("birth");
 		String changeImg	 = request.getParameter("changeImg");
 		String path = null;
+		pass = KISA_SHA256.encrypt(pass);
 		
 		Date birth 			 = null;
 		try { birth = sdf.parse(birth_str); } catch (ParseException e) { e.printStackTrace();}
