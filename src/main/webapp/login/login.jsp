@@ -81,7 +81,7 @@
     <div class="container">
 
       <form id = "frm" class="form-signin" action="${pageContext.request.contextPath}/login" method="post">
-        <h2 class="form-signin-heading">Please sign in</h2>
+        <h2 class="form-signin-heading">Please sign in ${countMap }</h2>
         <label for="userId" class="sr-only">User ID</label>
         <input type="text" id="userId" name = "userId" class="form-control" placeholder="User ID" required>
         <label for="password" class="sr-only">Password</label>
@@ -93,7 +93,6 @@
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit" id = "signInBtn">Sign in</button>
       </form>
-
     </div> <!-- /container -->
   </body>
 </html>
