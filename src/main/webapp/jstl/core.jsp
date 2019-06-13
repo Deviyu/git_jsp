@@ -1,3 +1,5 @@
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
 <%@page import="kr.or.ddit.paging.model.PageVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -53,6 +55,26 @@
 	<p>var = "i" begin="1" end="10" step="1"(default = "1")</p>
 	<c:forEach var ="i" begin ="1" end="10" step="1">
 		${i }<br>
+	</c:forEach>
+	
+	<h2>forEach Map</h2>
+	<%
+		Map<String, String> dataMap = new HashMap<String, String>();
+		dataMap.put("name", "brown");
+		dataMap.put("age", "17");
+		dataMap.put("hp", "010-1234-2345");
+	
+		for(String key : dataMap.keySet()) {
+			out.write(key);
+			out.write(" / ");
+			out.write(dataMap.get(key));
+			out.write("<br>");
+		}
+		pageContext.setAttribute("dataMap", dataMap);
+	%>
+	<br>
+	<c:forEach items="${dataMap }" var="map">
+		${map.key } / ${map.value }<br>
 	</c:forEach>
 </body>
 </html>
