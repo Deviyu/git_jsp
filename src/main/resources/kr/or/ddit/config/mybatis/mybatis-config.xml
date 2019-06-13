@@ -5,6 +5,7 @@
 <configuration>
 	<properties resource="db.properties"/>
 	<typeAliases>
+		<typeAlias alias = "ProdVO" type="kr.or.ddit.prod.model.ProdVO"/>
 		<typeAlias alias = "LprodVO" type="kr.or.ddit.lprod.model.LprodVO"/>
 		<typeAlias alias = "UserVO" type="kr.or.ddit.user.model.UserVO"/>
 		<typeAlias alias = "PageVO" type="kr.or.ddit.paging.model.PageVO"/>
@@ -24,5 +25,6 @@
   <mappers>
     <mapper resource="kr/or/ddit/config/mybatis/mapper/user.xml"/>
     <mapper resource="kr/or/ddit/config/mybatis/mapper/lprod.xml"/>
+    <mapper resource="kr/or/ddit/config/mybatis/mapper/prod.xml"/>
   </mappers>
 </configuration>
