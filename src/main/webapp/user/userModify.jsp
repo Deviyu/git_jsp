@@ -91,7 +91,7 @@
 					<div class="form-group">
 						<label for="userNm" class="col-sm-2 control-label">비밀번호</label>
 						<div class="col-sm-10">
-								<input type="password" class="form-control" id="pass" name="pass" placeholder="비밀번호" value= "${userVO.pass }">
+								<input type="password" class="form-control" id="pass" name="pass" placeholder="비밀번호">
 						</div>
 					</div>
 					

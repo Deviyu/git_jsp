@@ -41,7 +41,6 @@ public class RequestCountFilter implements Filter {
 
 	public void init(FilterConfig fConfig) throws ServletException {
 		countMap = new HashMap<>();
-		countMap.put("testValue", 10);
 		fConfig.getServletContext().setAttribute("countMap", countMap);
 	}
 

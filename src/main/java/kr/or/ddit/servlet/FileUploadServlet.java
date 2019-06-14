@@ -34,7 +34,6 @@ public class FileUploadServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//userId, profile 파라미터를 확인
-		request.setCharacterEncoding("UTF-8");
 		String userId = request.getParameter("userId");
 		String profile = request.getParameter("profile");
 		String contentType = request.getContentType();

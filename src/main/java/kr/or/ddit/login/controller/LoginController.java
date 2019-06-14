@@ -56,7 +56,7 @@ public class LoginController extends HttpServlet {
 	// 사용자 로그인 화면 요청 처리
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.debug("LoginController doGet()");
-		
+		logger.debug("parameter UNT_CD : {}", request.getParameter("UNT_CD"));
 //		Cookie[] cookies = request.getCookies();
 //		for(Cookie cookie : cookies) {
 //			logger.debug("cookie : {} = {}",cookie.getName(), cookie.getValue());
@@ -71,7 +71,6 @@ public class LoginController extends HttpServlet {
 			request.getRequestDispatcher("/main.jsp").forward(request, response);
 		} else {
 			//session에 사용자 정보가 없을 경우 --> 기존 로직대로 로그인 화면으로 이동
-//		response.sendRedirect(request.getContextPath() + "/login/login.jsp"); (만약 리다이렉트를 한다면)
 			logger.debug("사용자 정보 없음");
 			request.getRequestDispatcher("/login/login.jsp").forward(request, response);
 		}
@@ -79,6 +78,8 @@ public class LoginController extends HttpServlet {
 	
 	// 로그인 요청 처리
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		logger.debug("parameter UNT_CD : {}", request.getParameter("UNT_CD"));
+		
 		logger.debug("parameter userId (Ctrl) : {}", request.getParameter("userId"));
 		logger.debug("parameter pass (Ctrl) : {}", request.getParameter("password"));
 		logger.debug("parameter rememberMe(Ctrl) : {}", request.getParameter("rememberMe"));
@@ -88,7 +89,6 @@ public class LoginController extends HttpServlet {
 		String rememberMe = request.getParameter("rememberMe");
 		String encryptedPass = KISA_SHA256.encrypt(password);
 		//db에서 해당사용자의 정보조회 (service, dao 필요)
-		
 		UserVO userVO = userService.getUser(userId);
 		
 		//해당 사용자 정보를 이용하여 사용자가 보낸 userId, password가 일치하는지 검사

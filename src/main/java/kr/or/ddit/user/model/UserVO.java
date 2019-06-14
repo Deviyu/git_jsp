@@ -2,9 +2,20 @@ package kr.or.ddit.user.model;
 
 import java.util.Date;
 
+import javax.servlet.http.HttpSessionBindingEvent;
+import javax.servlet.http.HttpSessionBindingListener;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
-public class UserVO {
+
+
+
+public class UserVO implements HttpSessionBindingListener{
+	private static final Logger logger = LoggerFactory
+			.getLogger(UserVO.class);
+	
 	private String userId; // ID
 	private String name; // 이름
 	private String alias; // 별명
@@ -144,8 +155,14 @@ public class UserVO {
 				+ path + ", filename=" + filename + "]";
 	}
 
-	
 
-	
-	
+	@Override
+	public void valueBound(HttpSessionBindingEvent event) {
+		logger.debug("value Bound");
+	}
+
+	@Override
+	public void valueUnbound(HttpSessionBindingEvent event) {
+		logger.debug("value Unbound");
+	}
 }
