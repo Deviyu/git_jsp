@@ -2,6 +2,8 @@
 # Created by https://www.gitignore.io/api/maven,eclipse
 # Edit at https://www.gitignore.io/?templates=maven,eclipse
 
+src/main/resources/kr/or/ddit/config/mybatis/db.properties
+
 ### Eclipse ###
 .metadata
 bin/
@@ -14,7 +16,7 @@ local.properties
 .settings/
 .loadpath
 .recommenders
-db.properties
+
 
 # External tool builders
 .externalToolBuilders/
