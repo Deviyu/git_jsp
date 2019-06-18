@@ -11,17 +11,17 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="${pageContext.request.contextPath }/login">JSP/SPRING</a>
+			<a class="navbar-brand" href="${cp }/login">JSP/SPRING</a>
 			<!--  사용자가 로그인하지 않고 메인화면(localhost/jsp/main.jsp)에 접속했을 때 -->
 			<!--  '접속하지 않은 사용자입니다' 라는 문구를 표현 -->
 			<!--  사용자가 정상적으로 로그인 했을 때 -->
 			<!--  USER_INFO에 있는 name속성 출력 -->
 			<c:choose>
 				<c:when test="${USER_INFO.name eq null }">
-					<a class="navbar-brand" href="${pageContext.request.contextPath }/login" title = "로그인해주세요.">로그인하지 않은 사용자입니다.</a>
+					<a class="navbar-brand" href="${cp }/login" title = "로그인해주세요.">로그인하지 않은 사용자입니다.</a>
 				</c:when>
 				<c:otherwise>
-					<a class="navbar-brand" href="${pageContext.request.contextPath }/login">${USER_INFO.name }님 환영합니다.</a>
+					<a class="navbar-brand" href="${cp }/login">${USER_INFO.name }님 환영합니다.</a>
 				</c:otherwise>
 			</c:choose>
 		</div>
@@ -34,15 +34,15 @@
 						<li><a href="#">Profile</a></li>
 					</c:when>
 					<c:otherwise>
-						<li><a href="${pageContext.request.contextPath }/user?userId=${USER_INFO.userId}">Profile</a></li>
+						<li><a href="${cp }/user?userId=${USER_INFO.userId}">Profile</a></li>
 					</c:otherwise>
 				</c:choose>
 				<c:choose>
 					<c:when test="${USER_INFO eq null}">
-						<li><a href="${pageContext.request.contextPath}/login">Login</a></li>
+						<li><a href="${cp}/login">Login</a></li>
 					</c:when>
 					<c:otherwise>
-						<li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
+						<li><a href="${cp}/logout">Logout</a></li>
 					</c:otherwise>
 				</c:choose>
 			</ul>

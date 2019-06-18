@@ -35,11 +35,11 @@
 				<div class="col-sm-8 blog-main">
 					<h2 class="sub-header">사용자 상세정보</h2>
 					<c:set var="userID" value="${userVO.userId }"/>
-					<form class="form-horizontal" role="form" action="${pageContext.request.contextPath }/userModify?userId=${userID}">
+					<form class="form-horizontal" role="form" action="${cp }/userModify?userId=${userID}">
 					<div class="form-group">
 						<label for="userNm" class="col-sm-2 control-label">프로필 사진</label>
 						<div class="col-sm-10">
-							<img src = "${pageContext.request.contextPath }/profile?userId=${userVO.userId}"/>
+							<img src = "${cp }/profile?userId=${userVO.userId}"/>
 						</div>
 					</div>
 					

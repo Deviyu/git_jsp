@@ -65,7 +65,7 @@
 					<h2 class="sub-header">사용자 수정</h2>
 					
 					<form class="form-horizontal" id="frm" role="form" 
-							action="${pageContext.request.contextPath }/userModify" 
+							action="${cp }/userModify" 
 							method="post" enctype="multipart/form-data">
 					
 					<div class="form-group">

@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="${pageContext.request.contextPath }/fileUpload" 
+	<form action="${cp }/fileUpload" 
 		method="post" enctype="multipart/form-data">
 		UserId : <input type="text" name="userId" value="brown1"><br>
 		File : <input type="file" name="profile" accept="image/*"/> <br>

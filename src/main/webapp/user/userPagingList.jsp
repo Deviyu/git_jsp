@@ -54,7 +54,7 @@
 					<h2 class="sub-header">List</h2>
 					
 					<!-- 사용자 상세조회 페이지로 : userId -->
-					<form id = "frm" action="${pageContext.request.contextPath }/user" method="get">
+					<form id = "frm" action="${cp }/user" method="get">
 						<input type = "hidden" id = "userId" name="userId" />
 					</form>
 					
@@ -77,7 +77,7 @@
 						</table>
 					</div>
 
-					<a class="btn btn-default pull-right" href = "${pageContext.request.contextPath }/userForm">사용자 등록</a>
+					<a class="btn btn-default pull-right" href = "${cp }/userForm">사용자 등록</a>
 					<!-- 
 						사용자 수 : 105건
 						출력될 페이지 수 : 11건
@@ -89,7 +89,7 @@
 									<li class = "disabled"><span>≪</span></li>	
 								</c:when>
 								<c:otherwise>
-									<li><a href = "${pageContext.request.contextPath}/userPagingList?page=${pageVO.page - 1 }&pageSize=${pageVO.pageSize }">≪</a></li>	
+									<li><a href = "${cp}/userPagingList?page=${pageVO.page - 1 }&pageSize=${pageVO.pageSize }">≪</a></li>	
 								</c:otherwise>
 							</c:choose>
 							
@@ -102,7 +102,7 @@
 									</c:when>
 									<c:otherwise>
 										<li>
-											<a href = "${pageContext.request.contextPath}/userPagingList?page=${i}&pageSize=${pageVO.pageSize }">${i}</a>
+											<a href = "${cp}/userPagingList?page=${i}&pageSize=${pageVO.pageSize }">${i}</a>
 										</li>	
 									</c:otherwise>
 								</c:choose>
@@ -116,7 +116,7 @@
 								</c:when>
 								<c:otherwise>
 									<li>
-										<a href = "${pageContext.request.contextPath}/userPagingList?page=${pageVO.page + 1 }&pageSize=${pageVO.pageSize }">≫</a>
+										<a href = "${cp}/userPagingList?page=${pageVO.page + 1 }&pageSize=${pageVO.pageSize }">≫</a>
 									</li>
 								</c:otherwise>
 							</c:choose>
